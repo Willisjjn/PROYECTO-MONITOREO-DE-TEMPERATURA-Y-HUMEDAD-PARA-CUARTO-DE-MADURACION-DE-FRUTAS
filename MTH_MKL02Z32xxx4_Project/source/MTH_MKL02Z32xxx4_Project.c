@@ -39,6 +39,8 @@
 #include "clock_config.h"
 #include "MKL02Z4.h"
 #include "fsl_debug_console.h"
+
+#include "sdk_hal_gpio.h"
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
@@ -47,6 +49,7 @@
  * @brief   Application entry point.
  */
 int main(void) {
+	status_t resultado;
 
   	/* Init board hardware. */
     BOARD_InitBootPins();
@@ -58,6 +61,14 @@ int main(void) {
 #endif
 
     PRINTF("Hello World\n");
+
+
+    //coloca el pin PTB7 en alto
+       resultado=gpioPutLow(KPTB7);
+
+       if(resultado!=kStatus_Success)
+       	printf("error de operacion");
+
 
     /* Force the counter to be placed into memory. */
     volatile static int i = 0 ;
